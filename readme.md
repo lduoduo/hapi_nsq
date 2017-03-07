@@ -6,3 +6,6 @@
 + nsq
 
 > 初期没有界面
+
+#### nsq的安装与启动
+[nsq安装](http://note.youdao.com/noteshare?id=e3db56fd2c32c2e411b27fb41701f599&sub=WEB0103121457810e443ebed3f4a184e2e5)
