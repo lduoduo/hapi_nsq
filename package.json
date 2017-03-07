@@ -1,0 +1,14 @@
+{
+  "name": "myhapi",
+  "version": "1.0.0",
+  "description": "my hapi framework",
+  "main": "apps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lduoduo",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^16.1.0"
+  }
+}
