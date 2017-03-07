@@ -2,29 +2,38 @@
 
 const Hapi = require('hapi');
 
+const config = require('./config');
+const routes = require('./router/route.js');
+
 //create a server with a host and port
 const server = new Hapi.Server();
+
+
 server.connection({
     //外显的域或者ip
     //host: '10.101.40.14',
     //服务器监听的域或者ip地址
     //address: '10.101.40.14',
-    port: 10001
+    port: config.port.reader
 });
 
 //add route
-server.route({
-    method: 'get',
-    path: '/hello',
-    handler: function(req, res){
-        return res('hello dodo');
+server.route(
+    {
+        method: '*',
+        path: '/111',
+        handler: function (req, res) {
+            return res('hello 111');
+        }
     }
-});
+);
 
 //start the server
-server.start((err)=>{
-    if(err){
-        throw err;
-    }
-    console.log('reader running at ', server.info.uri);
-});
+module.exports = function Reader() {
+    server.start((err) => {
+        if (err) {
+            throw err;
+        }
+        console.log('reader running at ', server.info.uri);
+    });
+}
