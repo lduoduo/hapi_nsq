@@ -14,7 +14,7 @@ var apiPath = "../service/api";
 var list = [
     {
         path: urlPath,
-        controlname: "home.js",
+        controlname: "home",
         desc: "首页"
     }
 ];

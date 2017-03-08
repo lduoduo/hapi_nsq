@@ -10,12 +10,13 @@ var list = [
     {
         method: 'post',
         path: urlPath + "post",
-        controlname: "post.js",
+        controlname: "post",
         desc: "推送消息"
     },
     {
+        method: 'post',
         path: urlPath + "get",
-        controlname: "get.js",
+        controlname: "get",
         desc: "获取消息"
     }
 ];

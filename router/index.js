@@ -1,7 +1,9 @@
 /** 路由控制方法 */
-let server;
+const co = require('co');
 const routes = require('./route.js');
 require("../service/basecontrol.js");
+
+let server;
 
 module.exports = class Route {
     constructor(servers) {
@@ -30,22 +32,26 @@ module.exports = class Route {
             },
             path: conf.path,
             handler: function (req, res) {
-                
-                console.log(req);
-                let Control = requireControl(apiPath, conf.controlname);
-                let controls = new Control();
-                controls._init(req, res);
 
-                try {
+                console.log(req.url.href);
 
-                    controls[conf.controlname](req, res);
+                co(function* () {
+                    let Control = requireControl(apiPath, conf.controlname);
+                    let controls = new Control();
+                    controls._init(req, res);
 
-                } catch (e) {
+                    try {
 
-                    console.log(e);
-                    res(JSON.parse(e.message)).type('text/json');
+                        yield controls[conf.controlname](req, res);
 
-                }
+                    } catch (e) {
+
+                        console.log(e);
+                        res(JSON.parse(e.message)).type('text/json');
+
+                    }
+
+                });
 
             }
         })
@@ -53,5 +59,5 @@ module.exports = class Route {
 }
 
 function requireControl(paths, filename) {
-    return require(paths + filename);
+    return require(paths + '/' + filename);
 }
