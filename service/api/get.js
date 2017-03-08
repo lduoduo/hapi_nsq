@@ -5,7 +5,7 @@ module.exports = class control extends BaseControl {
     constructor() {
         super();
     }
-    *post(req) {
+    *get(req) {
         let self = this;
         let para = req.params;
         fetch(self.nsqurl, {

@@ -3,37 +3,45 @@
 const Hapi = require('hapi');
 
 const config = require('./config');
-const routes = require('./router/route.js');
+const Route = require('./router');
 
-//create a server with a host and port
-const server = new Hapi.Server();
+module.exports = class Reader extends Hapi.Server {
 
+    constructor(...args) {
 
-server.connection({
-    //外显的域或者ip
-    //host: '10.101.40.14',
-    //服务器监听的域或者ip地址
-    //address: '10.101.40.14',
-    port: config.port.reader
-});
-
-//add route
-server.route(
-    {
-        method: '*',
-        path: '/111',
-        handler: function (req, res) {
-            return res('hello 111');
-        }
+        super();
+        let self = this;
+        self.register([{
+            //启动服务时进行健康检查
+            register: require('h2o2')
+        }], (err) => {
+            self.init.apply(self, args);
+            self.start((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                console.log('reader running at ', self.info.uri);
+            });
+        });
+        
     }
-);
+    /** 初始化的一些操作和注册 */
+    init(arg) {
+        let self = this;
+        console.log(arg);
+        self.connection({
+            //外显的域或者ip
+            //host: '10.101.40.14',
+            //服务器监听的域或者ip地址
+            //address: '10.101.40.14',
+            port: config.port.reader,
+            router: {
+                stripTrailingSlash: true,
+                isCaseSensitive: false
+            }
+        });
 
-//start the server
-module.exports = function Reader() {
-    server.start((err) => {
-        if (err) {
-            throw err;
-        }
-        console.log('reader running at ', server.info.uri);
-    });
+        new Route(self);
+    }
+
 }
