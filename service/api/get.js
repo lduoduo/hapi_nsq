@@ -9,7 +9,9 @@ module.exports = class control extends BaseControl {
         let self = this;
         // let para = req.params;
         let para = req.payload;
-        console.log(para);
+        let remoteAddress = req.info.remoteAddress;
+        console.log('msg from: ' + remoteAddress + ' --> ' + JSON.stringify(para));
+        // console.log(para);
         yield self.end(200, 'ok');
         // fetch(self.nsqurl, {
         //     method: 'POST',
