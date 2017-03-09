@@ -12,8 +12,8 @@
 + nodejs对nsq的输入输出已经连接好，可以收发消息
 
 #### 问题：
-+ 消息的格式解析还有问题，输入格式json，输出格式不对
-
+- [x] - 消息的格式解析还有问题，输入格式json，输出格式不对
+      - 并发的投递时间间隔处理
 
 #### nsq的安装与启动
 [nsq安装](http://note.youdao.com/noteshare?id=e3db56fd2c32c2e411b27fb41701f599&sub=WEB0103121457810e443ebed3f4a184e2e5)
