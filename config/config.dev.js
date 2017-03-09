@@ -21,7 +21,7 @@ module.exports = class Config {
         this.nsqurl = "http://10.14.86.134:4151/put";
 
         //404跳转
-        this["404"] = "//www.ly.com/404";
+        this["404"] = "//ldodo.cc";
 
     }
 }
