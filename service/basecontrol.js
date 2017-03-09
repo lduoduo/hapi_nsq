@@ -25,7 +25,7 @@ module.exports = global.BaseControl = class BaseControl {
 
         switch (code) {
             case 200:
-                this.response(200);
+                this.response(obj);
                 break;
             case 301:
             case 302:

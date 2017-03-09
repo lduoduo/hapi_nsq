@@ -9,7 +9,7 @@ var apiPath = "../service/page";
 //url地址前缀
 var urlPath = config.rootPath;
 //control的相对路径
-var apiPath = "../service/api";
+var apiPath = "../service/page";
 
 var list = [
     {

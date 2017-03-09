@@ -18,6 +18,12 @@ var list = [
         path: urlPath + "get",
         controlname: "get",
         desc: "获取消息"
+    },
+    {
+        method: 'get',
+        path: urlPath + "getmsg",
+        controlname: "getmsg",
+        desc: "测试get"
     }
 ];
 

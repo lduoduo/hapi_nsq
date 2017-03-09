@@ -21,6 +21,7 @@ module.exports = class Route {
     }
     //具体路由注册
     route(apiPath, conf) {
+        // console.log(conf);
         server.route({
             method: conf.method || 'get',
             config: {
